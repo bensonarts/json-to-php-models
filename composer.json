@@ -1,0 +1,13 @@
+{
+    "name": "strikebit/json-to-php",
+    "description": "Utility for creating PHP classes from JSON",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Benson",
+            "email": "bensonan55@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,42 @@
+{
+  "test": {},
+  "id": 150,
+  "employer": null,
+  "balance": 0.5001,
+  "first_name": "John",
+  "last_name": "Doe",
+  "enabled": false,
+  "address": {
+    "street": "124 Baker St",
+    "aptSuite": "100",
+    "city": "Dallas",
+    "state": "TX",
+    "postalCode": "75204",
+    "country": {
+      "code": "US",
+      "name": "United States",
+      "planet": {
+        "name": "Earth",
+        "galaxy": "Milky Way"
+      }
+    }
+  },
+  "income": {
+    "netMonthly": 1000
+  },
+  "pets": [
+    {
+      "name": "Fido",
+      "type": "Dog",
+      "owner": {
+        "name": "John"
+      }
+    }, {
+      "name": "Winkles",
+      "type": "Cat",
+      "owner": {
+        "name": "John"
+      }
+    }
+  ]
+}
