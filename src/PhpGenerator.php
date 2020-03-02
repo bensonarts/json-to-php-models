@@ -1,6 +1,6 @@
 <?php
 
-class JsonParser
+class PhpGenerator
 {
     /**
      * @var ClassBuilder
@@ -8,25 +8,38 @@ class JsonParser
     private $builder;
 
     /**
-     * JsonParser constructor.
+     * PhpGenerator constructor.
      *
-     * @param bool $useTypeHinting
-     * @param bool $useFluentSetters
+     * @param bool        $useTypeHinting
+     * @param bool        $useFluentSetters
+     * @param string|null $namespace
      */
-    public function __construct(bool $useTypeHinting = true, bool $useFluentSetters = false)
-    {
-        $this->builder = new ClassBuilder($useTypeHinting, $useFluentSetters);
+    public function __construct(
+        bool $useTypeHinting = true,
+        bool $useFluentSetters = false,
+        ?string $namespace = null
+    ) {
+        $this->builder = new ClassBuilder($useTypeHinting, $useFluentSetters, $namespace);
     }
 
     /**
      * @param string $className
      * @param string $jsonStr
-     * @param string $namespace|null
+     *
+     * @return string
      */
-    public function fromJson(string $className, string $jsonStr, ?string $namespace = null): void
+    public function fromJson(string $className, string $jsonStr): string
     {
         $obj = json_decode($jsonStr, false);
-        $this->builder->build($className, $obj, $namespace);
+        $objects = $this->builder->build($className, $obj);
+        $str = '';
+
+        /** @var ClassPrototype $value */
+        foreach ($objects as $value) {
+            $str .= $value;
+        }
+
+        return $str;
     }
 }
 
@@ -43,47 +56,54 @@ class ClassBuilder
     private $useFluentSetters;
 
     /**
+     * @var string|null
+     */
+    private $namespace;
+
+    /**
      * ClassBuilder constructor.
      *
-     * @param bool $useTypeHinting
-     * @param bool $useFluentSetters
+     * @param bool        $useTypeHinting
+     * @param bool        $useFluentSetters
+     * @param string|null $namespace
      */
-    public function __construct(bool $useTypeHinting, bool $useFluentSetters = false)
+    public function __construct(bool $useTypeHinting, bool $useFluentSetters = false, ?string $namespace = null)
     {
         $this->useTypeHinting = $useTypeHinting;
         $this->useFluentSetters = $useFluentSetters;
+        $this->namespace = $namespace;
     }
 
     /**
      * @param string      $className
      * @param \stdClass   $obj
-     * @param string|null $namespace
+     * @param array       $objects
      *
-     * @return ClassPrototype
+     * @return array
      */
-    public function build(string $className, \stdClass $obj, ?string $namespace): ClassPrototype
+    public function build(string $className, \stdClass $obj, array $objects = []): array
     {
-        $newClass = new ClassPrototype($className, $this->useTypeHinting, $this->useFluentSetters, $namespace);
+        $newClass = new ClassPrototype($className, $this->useTypeHinting, $this->useFluentSetters, $this->namespace);
 
         foreach ($obj as $key => $value) {
             if (is_object($value)) {
-                $className = StringUtil::snakeKebabToCamelCase($key);
-                $newClass->addMethod($key, $className);
-                $this->build($className, $value, $namespace);
+                $subClassName = StringUtil::snakeKebabToCamelCase($key);
+                $newClass->addMethod($key, $subClassName);
+                $objects = $this->build($subClassName, $value, $objects);
             } elseif (is_array($value)) {
                 $newClass->addMethod($key, gettype($value));
                 if (!empty($value) && is_object($value[0])) {
-                    $className = StringUtil::snakeKebabToCamelCase($key);
-                    $this->build($className, $value[0], $namespace);
+                    $subClassName = StringUtil::snakeKebabToCamelCase($key);
+                    $objects = $this->build($subClassName, $value[0], $objects);
                 }
             } else {
                 $newClass->addMethod($key, gettype($value));
             }
         }
 
-        echo $newClass;
+        $objects[$className] = $newClass;
 
-        return $newClass;
+        return $objects;
     }
 }
 
@@ -92,7 +112,7 @@ class ClassPrototype
     /**
      * @var string
      */
-    private $name;
+    private $className;
 
     /**
      * @var array
@@ -117,14 +137,14 @@ class ClassPrototype
     /**
      * ClassPrototype constructor.
      *
-     * @param string      $name
+     * @param string      $className
      * @param bool        $useTypeHinting
      * @param bool        $useFluentSetters
      * @param string|null $namespace
      */
-    public function __construct(string $name, bool $useTypeHinting, bool $useFluentSetters = false, ?string $namespace = null)
+    public function __construct(string $className, bool $useTypeHinting, bool $useFluentSetters = false, ?string $namespace = null)
     {
-        $this->name = $name;
+        $this->className = $className;
         $this->useTypeHinting = $useTypeHinting;
         $this->useFluentSetters = $useFluentSetters;
         $this->namespace = $namespace;
@@ -251,9 +271,9 @@ EOL;
     /**
      * @param $dataType|null \$$propertyName
      *
-     * @return $this->name
+     * @return $this->className
      */
-    public function set$methodName(?$dataType \$$propertyName): $this->name
+    public function set$methodName(?$dataType \$$propertyName): $this->className
     {
         \$this->$propertyName = \$$propertyName;
         
@@ -317,7 +337,7 @@ EOL;
     /**
      * @param $dataType|null \$$propertyName
      *
-     * @return $this->name
+     * @return $this->className
      */
     public function set$methodName(\$$propertyName)
     {
@@ -376,7 +396,7 @@ EOL;
 
         if ($this->namespace) {
             $str .= <<<EOL
-namespace $this->namespace
+namespace $this->namespace;
 
 
 EOL;
@@ -384,7 +404,7 @@ EOL;
         }
 
         $str .= <<<EOL
-class $this->name
+class $this->className
 {
 
 EOL
@@ -400,6 +420,7 @@ EOL
         $str .= <<<EOL
 }
 
+--------------------------------------------------------------
 
 EOL;
 
@@ -423,7 +444,3 @@ class StringUtil
         return $value;
     }
 }
-
-$json = file_get_contents(__DIR__ . '/../data/test.json');
-$parser = new JsonParser(true, false);
-$parser->fromJson('Person', $json, 'Acme\Entity');

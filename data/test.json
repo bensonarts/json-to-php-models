@@ -1,5 +1,4 @@
 {
-  "test": {},
   "id": 150,
   "employer": null,
   "balance": 0.5001,
@@ -27,16 +26,10 @@
   "pets": [
     {
       "name": "Fido",
-      "type": "Dog",
-      "owner": {
-        "name": "John"
-      }
+      "type": "Dog"
     }, {
       "name": "Winkles",
-      "type": "Cat",
-      "owner": {
-        "name": "John"
-      }
+      "type": "Cat"
     }
   ]
 }
