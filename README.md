@@ -2,6 +2,9 @@
 A tool to generate PSR-2 compliant PHP model classes from JSON.
 
 ## Usage
+
+[Online tool](http://json2php.strikebit.io/)
+
 ### Command Line
 Example: 
 `php ./bin/cli.php ./input-file.json User 1 1 Acme\\Entity > output.txt`
