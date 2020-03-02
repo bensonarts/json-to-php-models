@@ -3,7 +3,7 @@ A tool to generate PSR-2 compliant PHP model classes from JSON.
 
 ## Usage
 
-[Online tool](http://json2php.strikebit.io/)
+[Online tool](https://json2php.strikebit.io/)
 
 ### Command Line
 Example: 
