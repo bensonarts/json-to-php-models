@@ -8,6 +8,11 @@ class PhpGenerator
     private $builder;
 
     /**
+     * @var array
+     */
+    private $classes = [];
+
+    /**
      * PhpGenerator constructor.
      *
      * @param bool        $useTypeHinting
@@ -26,16 +31,27 @@ class PhpGenerator
      * @param string $className
      * @param string $jsonStr
      *
-     * @return string
+     * @return array
      */
-    public function fromJson(string $className, string $jsonStr): string
+    public function fromJson(string $className, string $jsonStr): array
     {
         $obj = json_decode($jsonStr, false);
-        $objects = $this->builder->build($className, $obj);
+        $this->classes = $this->builder->build($className, $obj);
+
+        return $this->classes;
+    }
+
+    /**
+     * Print output of classes into string
+     *
+     * @return string
+     */
+    public function printClasses(): string
+    {
         $str = '';
 
         /** @var ClassPrototype $value */
-        foreach ($objects as $value) {
+        foreach ($this->classes as $value) {
             $str .= $value;
         }
 
@@ -420,7 +436,6 @@ EOL
         $str .= <<<EOL
 }
 
---------------------------------------------------------------
 
 EOL;
 

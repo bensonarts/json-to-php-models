@@ -28,4 +28,5 @@ if (!file_exists($argv[1])) {
     die(sprintf('File does not exist at %s', $argv[1]));
 }
 $json = file_get_contents($argv[1]);
-echo $generator->fromJson($className, $json);
+$generator->fromJson($className, $json);
+echo $generator->printClasses();
