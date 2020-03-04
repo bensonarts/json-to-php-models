@@ -4,7 +4,12 @@ recursively inspect JSON and generate corresponding classes complete with getter
 setters.
 
 ## Installation
-Clone this repository
+If you're wanting this to be a part of your project:
+
+`composer require strikebit/json-to-php`
+
+If you're wanting this to be a standalone tool, clone this repository. Then install 
+dependencies:
 
 `composer install`
 
