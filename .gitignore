@@ -1,4 +1,9 @@
-.idea/
 *.iml
 output*
-
+.idea/
+.DS_Store
+bin/
+build/
+vendor/
+phpunit.xml
+.phpunit.result.cache

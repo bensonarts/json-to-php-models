@@ -1,0 +1,68 @@
+<project name="json-to-php-models" default="test">
+    <property file="build.properties" />
+    <property environment="env" />
+
+    <target name="test" depends="prepare,vendor,lint,phpcs,phpmd,phpcpd,phpunit" />
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/results" />
+        <mkdir dir="${basedir}/build/logs" />
+    </target>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build" />
+    </target>
+
+    <target name="vendor" description="Load composer repositories">
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+            <arg value="--no-scripts" />
+        </exec>
+    </target>
+
+    <target name="lint" description="Perform syntax check">
+        <apply executable="php" failonerror="true" output="/dev/null">
+            <arg value="-l" />
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="vendor/**" />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phpcpd" description="Find duplicate code using PHP Copy Paste Detector">
+        <exec executable="vendor/bin/phpcpd" failonerror="false" output="/dev/null">
+            <arg value="--log-pmd" />
+            <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+            <arg path="${basedir}/src" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
+        <exec executable="vendor/bin/phpcs" failonerror="true">
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${basedir}/build/results/checkstyle.xml" />
+            <arg value="--standard=${phpcs.standard}" />
+            <arg value="--extensions=php" />
+            <arg path="${basedir}/src" />
+        </exec>
+    </target>
+
+    <target name="phpmd" description="Detect code smells and possible bugs using PHP Mess Detector">
+        <exec executable="vendor/bin/phpmd" failonerror="false">
+            <arg path="${basedir}/src" />
+            <arg value="xml" />
+            <arg value="cleancode,codesize,controversial,design,naming,unusedcode" />
+            <arg line="--reportfile ${basedir}/build/logs/pmd-md.xml" />
+            <arg value="--ignore-violations-on-exit" />
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="vendor/bin/simple-phpunit" failonerror="true">
+            <arg value="--testsuite=unit" />
+            <arg value="--log-junit=${basedir}/build/results/junit.xml" />
+            <arg value="--coverage-clover=${basedir}/build/results/clover.xml" />
+        </exec>
+    </target>
+</project>

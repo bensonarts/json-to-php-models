@@ -1,0 +1,531 @@
+<?php
+
+namespace Acme\Demo;
+
+class Planet
+{
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $galaxy;
+
+
+    /**
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGalaxy()
+    {
+        return $this->galaxy;
+    }
+
+    /**
+     * @param string|null $galaxy
+     */
+    public function setGalaxy($galaxy)
+    {
+        $this->galaxy = $galaxy;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Country
+{
+    /**
+     * @var string
+     */
+    private $code;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var Planet
+     */
+    private $planet;
+
+
+    /**
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string|null $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return Planet|null
+     */
+    public function getPlanet()
+    {
+        return $this->planet;
+    }
+
+    /**
+     * @param Planet|null $planet
+     */
+    public function setPlanet($planet)
+    {
+        $this->planet = $planet;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Address
+{
+    /**
+     * @var string
+     */
+    private $street;
+
+    /**
+     * @var string
+     */
+    private $aptSuite;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $state;
+
+    /**
+     * @var string
+     */
+    private $postalCode;
+
+    /**
+     * @var Country
+     */
+    private $country;
+
+
+    /**
+     * @return string|null
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string|null $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAptSuite()
+    {
+        return $this->aptSuite;
+    }
+
+    /**
+     * @param string|null $aptSuite
+     */
+    public function setAptSuite($aptSuite)
+    {
+        $this->aptSuite = $aptSuite;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string|null $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string|null $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string|null $postalCode
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+    }
+
+    /**
+     * @return Country|null
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country|null $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Income
+{
+    /**
+     * @var int
+     */
+    private $netMonthly;
+
+
+    /**
+     * @return int|null
+     */
+    public function getNetMonthly()
+    {
+        return $this->netMonthly;
+    }
+
+    /**
+     * @param int|null $netMonthly
+     */
+    public function setNetMonthly($netMonthly)
+    {
+        $this->netMonthly = $netMonthly;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Pets
+{
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $type;
+
+
+    /**
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Test
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $employer;
+
+    /**
+     * @var float
+     */
+    private $balance;
+
+    /**
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     */
+    private $lastName;
+
+    /**
+     * @var bool
+     */
+    private $enabled;
+
+    /**
+     * @var Address
+     */
+    private $address;
+
+    /**
+     * @var Income
+     */
+    private $income;
+
+    /**
+     * @var array
+     */
+    private $pets;
+
+
+    /**
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmployer()
+    {
+        return $this->employer;
+    }
+
+    /**
+     * @param string|null $employer
+     */
+    public function setEmployer($employer)
+    {
+        $this->employer = $employer;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param float|null $balance
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string|null $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string|null $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool|null $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return Address|null
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param Address|null $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return Income|null
+     */
+    public function getIncome()
+    {
+        return $this->income;
+    }
+
+    /**
+     * @param Income|null $income
+     */
+    public function setIncome($income)
+    {
+        $this->income = $income;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPets()
+    {
+        return $this->pets;
+    }
+
+    /**
+     * @param array|null $pets
+     */
+    public function setPets($pets)
+    {
+        $this->pets = $pets;
+    }
+}
+

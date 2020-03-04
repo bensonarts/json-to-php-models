@@ -1,0 +1,531 @@
+<?php
+
+namespace Acme\Demo;
+
+class Planet
+{
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $galaxy;
+
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGalaxy(): ?string
+    {
+        return $this->galaxy;
+    }
+
+    /**
+     * @param string|null $galaxy
+     */
+    public function setGalaxy(?string $galaxy): void
+    {
+        $this->galaxy = $galaxy;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Country
+{
+    /**
+     * @var string
+     */
+    private $code;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var Planet
+     */
+    private $planet;
+
+
+    /**
+     * @return string|null
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string|null $code
+     */
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return Planet|null
+     */
+    public function getPlanet(): ?Planet
+    {
+        return $this->planet;
+    }
+
+    /**
+     * @param Planet|null $planet
+     */
+    public function setPlanet(?Planet $planet): void
+    {
+        $this->planet = $planet;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Address
+{
+    /**
+     * @var string
+     */
+    private $street;
+
+    /**
+     * @var string
+     */
+    private $aptSuite;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $state;
+
+    /**
+     * @var string
+     */
+    private $postalCode;
+
+    /**
+     * @var Country
+     */
+    private $country;
+
+
+    /**
+     * @return string|null
+     */
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string|null $street
+     */
+    public function setStreet(?string $street): void
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAptSuite(): ?string
+    {
+        return $this->aptSuite;
+    }
+
+    /**
+     * @param string|null $aptSuite
+     */
+    public function setAptSuite(?string $aptSuite): void
+    {
+        $this->aptSuite = $aptSuite;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string|null $city
+     */
+    public function setCity(?string $city): void
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string|null $state
+     */
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string|null $postalCode
+     */
+    public function setPostalCode(?string $postalCode): void
+    {
+        $this->postalCode = $postalCode;
+    }
+
+    /**
+     * @return Country|null
+     */
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country|null $country
+     */
+    public function setCountry(?Country $country): void
+    {
+        $this->country = $country;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Income
+{
+    /**
+     * @var int
+     */
+    private $netMonthly;
+
+
+    /**
+     * @return int|null
+     */
+    public function getNetMonthly(): ?int
+    {
+        return $this->netMonthly;
+    }
+
+    /**
+     * @param int|null $netMonthly
+     */
+    public function setNetMonthly(?int $netMonthly): void
+    {
+        $this->netMonthly = $netMonthly;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Pets
+{
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $type;
+
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     */
+    public function setType(?string $type): void
+    {
+        $this->type = $type;
+    }
+}
+
+<?php
+
+namespace Acme\Demo;
+
+class Test
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $employer;
+
+    /**
+     * @var float
+     */
+    private $balance;
+
+    /**
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     */
+    private $lastName;
+
+    /**
+     * @var bool
+     */
+    private $enabled;
+
+    /**
+     * @var Address
+     */
+    private $address;
+
+    /**
+     * @var Income
+     */
+    private $income;
+
+    /**
+     * @var array
+     */
+    private $pets;
+
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmployer(): ?string
+    {
+        return $this->employer;
+    }
+
+    /**
+     * @param string|null $employer
+     */
+    public function setEmployer(?string $employer): void
+    {
+        $this->employer = $employer;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getBalance(): ?float
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param float|null $balance
+     */
+    public function setBalance(?float $balance): void
+    {
+        $this->balance = $balance;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string|null $firstName
+     */
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string|null $lastName
+     */
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool|null $enabled
+     */
+    public function setEnabled(?bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return Address|null
+     */
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param Address|null $address
+     */
+    public function setAddress(?Address $address): void
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return Income|null
+     */
+    public function getIncome(): ?Income
+    {
+        return $this->income;
+    }
+
+    /**
+     * @param Income|null $income
+     */
+    public function setIncome(?Income $income): void
+    {
+        $this->income = $income;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPets(): ?array
+    {
+        return $this->pets;
+    }
+
+    /**
+     * @param array|null $pets
+     */
+    public function setPets(?array $pets): void
+    {
+        $this->pets = $pets;
+    }
+}
+

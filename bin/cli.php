@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../src/PhpGenerator.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Strikebit\Util\PhpGenerator;
 
 if (empty($argv[1])) {
     die('Supply an input file');

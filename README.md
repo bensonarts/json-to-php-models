@@ -1,5 +1,12 @@
 # JSON to PHP model classes
-A tool to generate PSR-2 compliant PHP model classes from JSON.
+A tool to generate PSR-2 compliant PHP model classes from JSON. This tool will 
+recursively inspect JSON and generate corresponding classes complete with getters &
+setters.
+
+## Installation
+Clone this repository
+
+`composer install`
 
 ## Usage
 
@@ -16,4 +23,10 @@ Arguments:
 4. Fluent setters (0|1)
 5. Desired namespace (optional)
 
+## Contributing
+### Testing
+[Apache Ant](https://ant.apache.org/) is required.
 
+`ant`
+
+Build errors will appear in build/results.
